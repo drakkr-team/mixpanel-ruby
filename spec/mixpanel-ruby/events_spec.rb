@@ -24,7 +24,7 @@ describe Mixpanel::Events do
         'properties' => {
             'Circumstances' => 'During a test',
             'distinct_id' => 'TEST ID',
-            'mp_lib' => 'ruby',
+            'mp_lib' => 'Drakkr Ruby',
             '$lib_version' => Mixpanel::VERSION,
             'token' => 'TEST TOKEN',
             'time' => @time_now.to_i
@@ -43,7 +43,7 @@ describe Mixpanel::Events do
             'properties' => {
                 'Circumstances' => 'During a test',
                 'distinct_id' => 'TEST ID',
-                'mp_lib' => 'ruby',
+                'mp_lib' => 'Drakkr Ruby',
                 '$lib_version' => Mixpanel::VERSION,
                 'token' => 'TEST TOKEN',
                 'time' => @time_now.to_i
@@ -65,7 +65,7 @@ describe Mixpanel::Events do
             'properties' => {
                 'Circumstances' => 'During a test',
                 'distinct_id' => 'TEST ID',
-                'mp_lib' => 'ruby',
+                'mp_lib' => 'Drakkr Ruby',
                 '$lib_version' => Mixpanel::VERSION,
                 'token' => 'TEST TOKEN',
                 'time' => older_time.to_i,

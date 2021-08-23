@@ -26,7 +26,7 @@ describe Mixpanel::Tracker do
     properties = {'Circumstances' => 'During test'}
     default_properties = {
       'distinct_id' => 'TEST_ID',
-      'mp_lib' => 'ruby',
+      'mp_lib' => 'Drakkr Ruby',
       '$lib_version' => Mixpanel::VERSION,
       'token' => 'TEST TOKEN',
       'time' => @time_now.to_i
@@ -68,7 +68,7 @@ describe Mixpanel::Tracker do
         'properties' => {
             'Circumstances' => 'During test',
             'distinct_id' => 'TEST ID',
-            'mp_lib' => 'ruby',
+            'mp_lib' => 'Drakkr Ruby',
             '$lib_version' => Mixpanel::VERSION,
             'token' => 'TEST TOKEN',
             'time' => @time_now.to_i
@@ -91,7 +91,7 @@ describe Mixpanel::Tracker do
           { 'event' => 'Event',
             'properties' => {
               'distinct_id' => 'ID',
-              'mp_lib' => 'ruby',
+              'mp_lib' => 'Drakkr Ruby',
               '$lib_version' => Mixpanel::VERSION,
               'token' => 'TEST TOKEN',
               'time' => @time_now.to_i
@@ -103,7 +103,7 @@ describe Mixpanel::Tracker do
               'event' => 'Import',
               'properties' => {
                 'distinct_id' => 'ID',
-                'mp_lib' => 'ruby',
+                'mp_lib' => 'Drakkr Ruby',
                 '$lib_version' => Mixpanel::VERSION,
                 'token' => 'TEST TOKEN',
                 'time' => @time_now.to_i

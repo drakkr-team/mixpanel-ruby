@@ -166,7 +166,7 @@ module Mixpanel
         'distinct_id' => distinct_id,
         'token' => @token,
         'time' => Time.now.to_i,
-        'mp_lib' => 'ruby',
+        'mp_lib' => 'Drakkr Ruby',
         '$lib_version' => Mixpanel::VERSION,
       }.merge(properties)
 
