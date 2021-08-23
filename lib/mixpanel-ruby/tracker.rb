@@ -2,7 +2,27 @@ require 'mixpanel-ruby/events.rb'
 require 'mixpanel-ruby/people.rb'
 require 'mixpanel-ruby/groups.rb'
 
+require "active_support/concern"
+require "action_dispatch/middleware/session/cookie_store"
+
 module Mixpanel
+  extend ActionDispatch::Session
+  extend ActiveSupport::Concern
+
+  included do
+    before_action :add_ip_and_browser
+  end
+
+  def add_ip_and_browser
+    session[:ip] = request.remote_ip
+    session[:browser_name] = browser.name
+    session[:browser_os] = browser.platform.name
+    @@session = session
+  end
+
+  def self.session
+    @@session
+  end
   # Use Mixpanel::Tracker to track events and profile updates in your application.
   # To track an event, call
   #
@@ -77,7 +97,7 @@ module Mixpanel
     #         'Email Template' => 'Pretty Pink Welcome',
     #         'User Sign-up Cohort' => 'July 2013'
     #     })
-    def track(distinct_id, event, properties={}, ip=nil, browser=nil)
+    def track(distinct_id, event, properties={}, ip=Mixpanel.session[:ip], browser_name=Mixpanel.session[:browser_name], browser_os=Mixpanel.session[:browser_os])
       # This is here strictly to allow rdoc to include the relevant
       # documentation
       super

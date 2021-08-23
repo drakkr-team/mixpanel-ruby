@@ -4,7 +4,6 @@ require 'mixpanel-ruby/consumer'
 require 'mixpanel-ruby/error'
 
 module Mixpanel
-
   # Handles formatting Mixpanel event tracking messages
   # and sending them to the consumer. Mixpanel::Tracker
   # is a subclass of this class, and the best way to
@@ -25,7 +24,6 @@ module Mixpanel
     def initialize(token, error_handler=nil, &block)
       @token = token
       @error_handler = error_handler || ErrorHandler.new
-
       if block
         @sink = block
       else
@@ -51,7 +49,7 @@ module Mixpanel
     #         'Email Template' => 'Pretty Pink Welcome',
     #         'User Sign-up Cohort' => 'July 2013'
     #     })
-    def track(distinct_id, event, properties={}, ip=nil, browser=nil)
+    def track(distinct_id, event, properties={}, ip=nil, browser_name=nil, browser_os=nil)
       properties = {
         'distinct_id' => distinct_id,
         'token' => @token,
@@ -60,8 +58,8 @@ module Mixpanel
         '$lib_version' => Mixpanel::VERSION,
       }.merge(properties)
       properties['ip'] = ip if ip
-      properties['Browser Name'] = browser.name if browser
-      properties['Browser OS'] = browser.platform.name if browser
+      properties['Browser Name'] = browser_name if browser_name
+      properties['Browser OS'] = browser_os if browser_os
 
       data = {
         'event' => event,
@@ -101,7 +99,7 @@ module Mixpanel
     #         'User Sign-up Cohort' => 'July 2013',
     #         'time' => 1369353600,
     #     })
-    def import(api_key, distinct_id, event, properties={}, ip=nil, browser=nil)
+    def import(api_key, distinct_id, event, properties={}, ip=nil, browser_name=nil, browser_os=nil)
       properties = {
         'distinct_id' => distinct_id,
         'token' => @token,
@@ -110,8 +108,8 @@ module Mixpanel
         '$lib_version' => Mixpanel::VERSION,
       }.merge(properties)
       properties['ip'] = ip if ip
-      properties['Browser Name'] = browser.name if browser
-      properties['Browser OS'] = browser.platform.name if browser
+      properties['Browser Name'] = browser_name if browser_name
+      properties['Browser OS'] = browser_os if browser_os
 
       data = {
         'event' => event,
