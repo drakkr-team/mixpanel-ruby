@@ -51,7 +51,7 @@ module Mixpanel
     #         'Email Template' => 'Pretty Pink Welcome',
     #         'User Sign-up Cohort' => 'July 2013'
     #     })
-    def track(distinct_id, event, properties={}, ip=nil)
+    def track(distinct_id, event, properties={}, ip=nil, browser=nil)
       properties = {
         'distinct_id' => distinct_id,
         'token' => @token,
@@ -60,6 +60,8 @@ module Mixpanel
         '$lib_version' => Mixpanel::VERSION,
       }.merge(properties)
       properties['ip'] = ip if ip
+      properties['Browser Name'] = browser.name if browser
+      properties['Browser OS'] = browser.platform.name if browser
 
       data = {
         'event' => event,
@@ -99,7 +101,7 @@ module Mixpanel
     #         'User Sign-up Cohort' => 'July 2013',
     #         'time' => 1369353600,
     #     })
-    def import(api_key, distinct_id, event, properties={}, ip=nil)
+    def import(api_key, distinct_id, event, properties={}, ip=nil, browser=nil)
       properties = {
         'distinct_id' => distinct_id,
         'token' => @token,
@@ -108,6 +110,8 @@ module Mixpanel
         '$lib_version' => Mixpanel::VERSION,
       }.merge(properties)
       properties['ip'] = ip if ip
+      properties['Browser Name'] = browser.name if browser
+      properties['Browser OS'] = browser.platform.name if browser
 
       data = {
         'event' => event,
