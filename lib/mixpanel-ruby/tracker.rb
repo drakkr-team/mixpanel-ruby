@@ -97,7 +97,7 @@ module Mixpanel
     #         'Email Template' => 'Pretty Pink Welcome',
     #         'User Sign-up Cohort' => 'July 2013'
     #     })
-    def track(distinct_id, event, properties={}, ip=Mixpanel.session[:ip], browser_name=Mixpanel.session[:browser_name], browser_os=Mixpanel.session[:browser_os])
+    def track(distinct_id, event, properties={}, ip=nil, browser_name=Mixpanel.session[:browser_name], browser_os=Mixpanel.session[:browser_os])
       # This is here strictly to allow rdoc to include the relevant
       # documentation
       super

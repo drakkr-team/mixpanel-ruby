@@ -57,7 +57,7 @@ module Mixpanel
         'mp_lib' => 'Drakkr Ruby',
         '$lib_version' => Mixpanel::VERSION,
       }.merge(properties)
-      properties['$ip'] = ip if ip
+      properties['ip'] = ip if ip
       properties['Browser Name'] = browser_name if browser_name
       properties['Browser OS'] = browser_os if browser_os
 
