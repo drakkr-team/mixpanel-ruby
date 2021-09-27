@@ -60,7 +60,7 @@ module Mixpanel
       properties['ip'] = ip if ip
       properties['Browser Name'] = browser_name if browser_name
       properties['Browser OS'] = browser_os if browser_os
-      properties['Utm Source'] = utm_source unless utm_source.empty?
+      properties['Utm Source'] = utm_source unless utm_source.nil?
 
       data = {
         'event' => event,
