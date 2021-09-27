@@ -17,7 +17,9 @@ module Mixpanel
     session[:ip] = request.remote_ip
     session[:browser_name] = browser.name
     session[:browser_os] = browser.platform.name
-    unless params[:utm_source].nil?
+    if params[:utm_source].nil?
+      session[:utm_source] = ""
+    else
       session[:utm_source] = params[:utm_source]
     end
     @@session = session
