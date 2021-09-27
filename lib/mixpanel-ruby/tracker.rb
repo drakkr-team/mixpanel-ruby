@@ -17,6 +17,9 @@ module Mixpanel
     session[:ip] = request.remote_ip
     session[:browser_name] = browser.name
     session[:browser_os] = browser.platform.name
+    unless params[:utm_source].empty?
+      session[:utm_source] = params[:utm_source]
+    end
     @@session = session
   end
 
@@ -97,7 +100,7 @@ module Mixpanel
     #         'Email Template' => 'Pretty Pink Welcome',
     #         'User Sign-up Cohort' => 'July 2013'
     #     })
-    def track(distinct_id, event, properties={}, ip=nil, browser_name=Mixpanel.session[:browser_name], browser_os=Mixpanel.session[:browser_os])
+    def track(distinct_id, event, properties={}, ip=nil, browser_name=Mixpanel.session[:browser_name], browser_os=Mixpanel.session[:browser_os], utm_source=Mixpanel.session[:utm_source])
       # This is here strictly to allow rdoc to include the relevant
       # documentation
       super
