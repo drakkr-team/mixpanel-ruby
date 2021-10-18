@@ -17,9 +17,13 @@ module Mixpanel
     session[:ip] = request.remote_ip
     session[:browser_name] = browser.name
     session[:browser_os] = browser.platform.name
-    unless params[:utm_source].nil?
-      session[:utm_source] = params[:utm_source]
-    end
+
+    session[:utm_source] = params[:utm_source] unless params[:utm_source].nil?
+    session[:utm_medium] = params[:utm_medium] unless params[:utm_medium].nil?
+    session[:utm_term] = params[:utm_term] unless params[:utm_term].nil?
+    session[:utm_content] = params[:utm_content] unless params[:utm_content].nil?
+    session[:utm_campaign] = params[:utm_campaign] unless params[:utm_campaign].nil?
+
     @@session = session
   end
 
@@ -100,7 +104,7 @@ module Mixpanel
     #         'Email Template' => 'Pretty Pink Welcome',
     #         'User Sign-up Cohort' => 'July 2013'
     #     })
-    def track(distinct_id, event, properties={}, ip=nil, browser_name=Mixpanel.session[:browser_name], browser_os=Mixpanel.session[:browser_os], utm_source=Mixpanel.session[:utm_source])
+    def track(distinct_id, event, properties={}, ip=nil, browser_name=Mixpanel.session[:browser_name], browser_os=Mixpanel.session[:browser_os], utm_source=Mixpanel.session[:utm_source], utm_medium=Mixpanel.session[:utm_medium], utm_term=Mixpanel.session[:utm_term], utm_content=Mixpanel.session[:utm_content], utm_campaign=Mixpanel.session[:utm_campaign])
       # This is here strictly to allow rdoc to include the relevant
       # documentation
       super

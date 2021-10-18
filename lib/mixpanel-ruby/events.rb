@@ -49,7 +49,7 @@ module Mixpanel
     #         'Email Template' => 'Pretty Pink Welcome',
     #         'User Sign-up Cohort' => 'July 2013'
     #     })
-    def track(distinct_id, event, properties={}, ip=nil, browser_name=nil, browser_os=nil, utm_source=nil)
+    def track(distinct_id, event, properties={}, ip=nil, browser_name=nil, browser_os=nil, utm_source=nil, utm_medium=nil, utm_term=nil, utm_content=nil, utm_campaign=nil)
       properties = {
         'distinct_id' => distinct_id,
         'token' => @token,
@@ -60,7 +60,12 @@ module Mixpanel
       properties['ip'] = ip if ip
       properties['Browser Name'] = browser_name if browser_name
       properties['Browser OS'] = browser_os if browser_os
+
       properties['Utm Source'] = utm_source unless utm_source.nil?
+      properties['Utm Medium'] = utm_medium unless utm_medium.nil?
+      properties['Utm Term'] = utm_term unless utm_term.nil?
+      properties['Utm Content'] = utm_content unless utm_content.nil?
+      properties['Utm Campaign'] = utm_campaign unless utm_campaign.nil?
 
       data = {
         'event' => event,
